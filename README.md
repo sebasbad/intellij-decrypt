@@ -15,7 +15,7 @@ Run the following from a terminal and follow the instructions (for Linux, OSX):
     cd intellij-decrypt
     mkdir -p ./src/com/intellij/ide/passwordSafe/impl/providers/
     curl https://android.googlesource.com/platform/tools/idea/+/snapshot-master/platform/platform-impl/src/com/intellij/ide/passwordSafe/impl/providers/EncryptionUtil.java?format=TEXT | base64 -D > ./src/com/intellij/ide/passwordSafe/impl/providers/EncryptionUtil.java
-    wget http://archive.apache.org/dist/commons/codec/binaries/commons-codec-1.9-bin.tar.gz -P ./lib/
+    curl http://archive.apache.org/dist/commons/codec/binaries/commons-codec-1.9-bin.tar.gz -o ./lib/commons-codec-1.9-bin.tar.gz
     tar -xzf ./lib/commons-codec-1.9-bin.tar.gz -C ./lib/
     javac ./src/org/corneliudascalu/intellijdecrypt/Main.java -classpath .:lib/commons-codec-1.9/commons-codec-1.9.jar:./src
     java -classpath .:lib/commons-codec-1.9/commons-codec-1.9.jar:src org.corneliudascalu.intellijdecrypt.Main -p your_master_password -f /your/path/to/security.xml
