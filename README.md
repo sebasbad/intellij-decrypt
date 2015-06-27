@@ -6,6 +6,7 @@ Small utility to decrypt passwords saved by Intellij IDEA / Android Studio. It w
 Usage
 -----
 Find your Intellij IDEA / Android Studio security.xml files (for Linux, OSX):
+
     cd
     find . | grep "security\.xml"
 
