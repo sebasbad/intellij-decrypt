@@ -1,16 +1,24 @@
 intellij-decrypt
 ================
 
-[![Join the chat at https://gitter.im/corneliudascalu/intellij-decrypt](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/corneliudascalu/intellij-decrypt?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-Small utility to decrypt passwords saved by Intellij IDEA. It works for passwords you forgot but they are still stored (encrypted) by Intellij IDEA. You have to supply the master password and the path to the security.xml file.
+Small utility to decrypt passwords saved by Intellij IDEA / Android Studio. It works for passwords you forgot but they are still stored (encrypted) by Intellij IDEA / Android Studio. You have to supply the master password and the path to the security.xml file.
 
 Usage
 -----
-Download the intellij-decrypt.jar file and run this in the folder you've saved it (for Linux):
+Find your Intellij IDEA / Android Studio security.xml files (for Linux, OSX):
+    cd
+    find . | grep "security\.xml"
 
-    java -classpath .:intellij-decrypt.jar:lib/commons-codec-1.9.jar org.corneliudascalu.intellijdecrypt.Main
+Run the following from a terminal and follow the instructions (for Linux, OSX):
 
+    git clone git@github.com:sebasbad/intellij-decrypt.git
+    cd intellij-decrypt
+    mkdir -p ./src/com/intellij/ide/passwordSafe/impl/providers/
+    curl https://android.googlesource.com/platform/tools/idea/+/snapshot-master/platform/platform-impl/src/com/intellij/ide/passwordSafe/impl/providers/EncryptionUtil.java?format=TEXT | base64 -D > ./src/com/intellij/ide/passwordSafe/impl/providers/EncryptionUtil.java
+    wget http://archive.apache.org/dist/commons/codec/binaries/commons-codec-1.9-bin.tar.gz -P ./lib/
+    tar -xzf ./lib/commons-codec-1.9-bin.tar.gz -C ./lib/
+    javac ./src/org/corneliudascalu/intellijdecrypt/Main.java -classpath .:lib/commons-codec-1.9/commons-codec-1.9.jar:./src
+    java -classpath .:lib/commons-codec-1.9/commons-codec-1.9.jar:src org.corneliudascalu.intellijdecrypt.Main -p your_master_password -f /your/path/to/security.xml
 
 License
 -----
